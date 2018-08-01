@@ -3,8 +3,9 @@ import java.util.Scanner;
 
 
 public class Main {
+	// Made changes to only initialization section of this code
 	
-	private static Scanner sc;// changed the object name from IN to sc 
+	private static Scanner sc;// changed the object name from IN to sc  new
 	private static library lib;// changed the object name from Capital LIB to lib 
 	private static String menu; // changed the variable name from capital MENU to menu 
 	private static Calendar cal;// changed the object name from capital CAL to cal
