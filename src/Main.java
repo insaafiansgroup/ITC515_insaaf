@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Main {
 	
-	private static Scanner IN;
-	private static library LIB;
-	private static String MENU;
-	private static Calendar CAL;
-	private static SimpleDateFormat SDF;
+	private static Scanner sc;// changed the object name from IN to sc 
+	private static library lib;// changed the object name from Capital LIB to lib 
+	private static String menu; // changed the variable name from capital MENU to menu 
+	private static Calendar cal;// changed the object name from capital CAL to cal
+	private static SimpleDateFormat sdf;// changed the object name from SDF to sdf 
 	
 	
 	private static String Get_menu() {
