@@ -2,7 +2,7 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 
-public class Main {
+public class MainCode { // Class name was confusing it was not advisable to have class or method name as Main or main(changed from Main to MainCode)
 	// Made changes to only initialization section of this code
 	
 	private static Scanner sc;// changed the object name from IN to sc  new
@@ -16,51 +16,53 @@ public class Main {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("\nLibrary Main Menu\n\n")
-		  .append("  M  : add member\n")
-		  .append("  LM : list members\n")
-		  .append("\n")
-		  .append("  B  : add book\n")
-		  .append("  LB : list books\n")
-		  .append("  FB : fix books\n")
-		  .append("\n")
-		  .append("  L  : take out a loan\n")
-		  .append("  R  : return a loan\n")
-		  .append("  LL : list loans\n")
-		  .append("\n")
-		  .append("  P  : pay fine\n")
-		  .append("\n")
-		  .append("  T  : increment date\n")
-		  .append("  Q  : quit\n")
-		  .append("\n")
-		  .append("Choice : ");
+		//instance name sb was missing in below line
+		sb.append("  M  : add member\n")
+		sb.append("  LM : list members\n")
+		sb.append("\n")
+		sb.append("  B  : add book\n")
+		sb.append("  LB : list books\n")
+		sb.append("  FB : fix books\n")
+		sb.append("\n")
+		sb.append("  L  : take out a loan\n")
+		sb.append("  R  : return a loan\n")
+		sb.append("  LL : list loans\n")
+		sb.append("\n")
+		sb.append("  P  : pay fine\n")
+		sb.append("\n")
+		sb.append("  ID  : increment date\n")//The menu option was not suitable changed from T to ID
+		sb.append("  Q  : quit\n")
+		sb.append("\n")
+		sb.append("Choice : ");
 		  
 		return sb.toString();
 	}
 
 
 	public static void main(String[] args) {		
-		try {			
-			IN = new Scanner(System.in);
-			LIB = library.INSTANCE();
-			CAL = Calendar.getInstance();
-			SDF = new SimpleDateFormat("dd/MM/yyyy");
+		try {	
+			// reflect the changes made above in below section (initialization section)		
+			sc = new Scanner(System.in);
+			lib = library.INSTANCE();
+			cal = Calendar.getInstance();
+			sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
-			for (member m : LIB.Members()) {
+			for (member m : lib.Members()) {
 				output(m);
 			}
 			output(" ");
-			for (book b : LIB.Books()) {
+			for (book b : lib.Books()) {
 				output(b);
 			}
 						
-			MENU = Get_menu();
+			menu = Get_menu();
 			
 			boolean e = false;
 			
 			while (!e) {
 				
-				output("\n" + SDF.format(CAL.Date()));
-				String c = input(MENU);
+				output("\n" + sdf.format(cal.Date()));
+				String c = input(menu);
 				
 				switch (c.toUpperCase()) {
 				
