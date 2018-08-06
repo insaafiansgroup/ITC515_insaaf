@@ -101,8 +101,8 @@ public class MainCode { // Class name was confusing it was not advisable to have
 				case "P": 
 					payFine();
 					break;
-					
-				case "T": 
+					// chaned above T to ID
+				case "ID": 
 					incrementDate();
 					break;
 					
@@ -114,8 +114,8 @@ public class MainCode { // Class name was confusing it was not advisable to have
 					output("\nInvalid option\n");
 					break;
 				}
-				
-				library.SAVE();
+				// method name cannot be all caps should follow one naming convention.
+				library.save();
 			}			
 		} catch (RuntimeException e) {
 			output(e);
@@ -130,7 +130,8 @@ public class MainCode { // Class name was confusing it was not advisable to have
 
 	private static void listCurrentLoans() {
 		output("");
-		for (loan loan : LIB.CurrentLoans()) {
+		// changed LIB to lib
+		for (loan loan : lib.CurrentLoans()) {
 			output(loan + "\n");
 		}		
 	}
@@ -139,7 +140,7 @@ public class MainCode { // Class name was confusing it was not advisable to have
 
 	private static void listBooks() {
 		output("");
-		for (book book : LIB.Books()) {
+		for (book book : lib.Books()) {
 			output(book + "\n");
 		}		
 	}
