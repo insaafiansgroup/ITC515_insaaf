@@ -2,11 +2,11 @@ import java.io.Serializable;
 
 
 @SuppressWarnings("serial")
-public class book implements Serializable {
+public class Book implements Serializable { // Changed class name 
 	
 	private String t; // Testing
 	private String a; // Changed the variable name 
-	private String C;
+	private String c; // Changed the variable name
 	private int ID;
 	
 	private enum STATE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
