@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class book implements Serializable {
 	
 	private String t; // Testing
-	private String A;
+	private String a; // Changed the variable name 
 	private String C;
 	private int ID;
 	
