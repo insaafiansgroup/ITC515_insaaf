@@ -140,7 +140,8 @@ public class MainCode { // Class name was confusing it was not advisable to have
 
 	private static void listBooks() {
 		output("");
-		for (book book : lib.Books()) {
+		// in for loop class name variable type changed and method name changed
+		for (Book book : lib.books()) {
 			output(book + "\n");
 		}		
 	}
@@ -149,7 +150,8 @@ public class MainCode { // Class name was confusing it was not advisable to have
 
 	private static void listMembers() {
 		output("");
-		for (member member : LIB.Members()) {
+		// in for loop class name variable type changed and method name changed
+		for (Member member : lib.members()) {
 			output(member + "\n");
 		}		
 	}
@@ -174,9 +176,10 @@ public class MainCode { // Class name was confusing it was not advisable to have
 	private static void incrementDate() {
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
-			CAL.incrementDate(days);
-			LIB.checkCurrentLoans();
-			output(SDF.format(CAL.Date()));
+			//changed object names
+			cal.incrementDate(days);
+			lib.checkCurrentLoans();
+			output(sdf.format(cal.Date()));
 			
 		} catch (NumberFormatException e) {
 			 output("\nInvalid number of days\n");
@@ -189,7 +192,8 @@ public class MainCode { // Class name was confusing it was not advisable to have
 		String author = input("Enter author: ");
 		String title  = input("Enter title: ");
 		String callNo = input("Enter call number: ");
-		book book = LIB.Add_book(author, title, callNo);
+		//  variable type changed and method name changed (naming convention)
+		Book book = lib.addBook(author, title, callNo);
 		output("\n" + book + "\n");
 		
 	}
@@ -201,7 +205,8 @@ public class MainCode { // Class name was confusing it was not advisable to have
 			String firstName  = input("Enter first name: ");
 			String email = input("Enter email: ");
 			int phoneNo = Integer.valueOf(input("Enter phone number: ")).intValue();
-			member member = LIB.Add_mem(lastName, firstName, email, phoneNo);
+			// variable type changed and method name changed (naming convention)
+			Member member = lib.addMem(lastName, firstName, email, phoneNo);
 			output("\n" + member + "\n");
 			
 		} catch (NumberFormatException e) {
