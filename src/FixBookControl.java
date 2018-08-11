@@ -1,16 +1,18 @@
 public class FixBookControl {
 	
 	private FixBookUI ui;
-	private enum CONTROL_STATE { INITIALISED, READY, FIXING };
-	private CONTROL_STATE state;
+		//naming convention
+	private enum ControlState { INITIALISED, READY, FIXING };
+	private ControlState state;
 	
-	private library library;
+		// library changed to lib to avoid the collapse
+	private library lib;
 	private book currentBook;
 
 
 	public FixBookControl() {
-		this.library = library.INSTANCE();
-		state = CONTROL_STATE.INITIALISED;
+		this.library = library.instance(); //naming convention
+		state = ControlState.INITIALISED;
 	}
 	
 	
