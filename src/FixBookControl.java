@@ -17,12 +17,12 @@ public class FixBookControl {
 	
 	
 	public void setUI(FixBookUI ui) {
-		if (!state.equals(CONTROL_STATE.INITIALISED)) {
+		if (!state.equals(controlState.INITIALISED))//naming convention {
 			throw new RuntimeException("FixBookControl: cannot call setUI except in INITIALISED state");
 		}	
 		this.ui = ui;
-		ui.setState(FixBookUI.UI_STATE.READY);
-		state = CONTROL_STATE.READY;		
+		ui.setState(FixBookUI.uiState.READY);//naming Convention 
+		state = controlState.READY;		//naming convention
 	}
 
 
