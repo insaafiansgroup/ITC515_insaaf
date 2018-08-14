@@ -62,7 +62,7 @@ public class FixBookControl {
 
 
 	public void scanningComplete() {
-		if (!state.equals(CONTROL_STATE.READY)) {
+		if (!state.equals(controlState.READY)) {// class object CONTROL_STATE changed to controlState( naming convention)
 			throw new RuntimeException("FixBookControl: cannot call scanningComplete except in READY state");
 		}
 		ui.setState(FixBookUI.UI_STATE.COMPLETED);
