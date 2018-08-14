@@ -47,15 +47,17 @@ public class FixBookControl {
 
 
 	public void fixBook(boolean fix) {
-		if (!state.equals(CONTROL_STATE.FIXING)) {
+		if (!state.equals(controlState.FIXING)) {// class object CONTROL_STATE changed to controlState( naming convention)
+	}
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
 		}
 		if (fix) {
 			library.repairBook(currentBook);
 		}
 		currentBook = null;
-		ui.setState(FixBookUI.UI_STATE.READY);
-		state = CONTROL_STATE.READY;
+		ui.setState(FixBookUI.uiState.READY);// class object UI_STATE changed to uiState(naming convention )
+		state = controlState.READY;// class object CONTROL_STATE changed to controlState( naming convention)
+	}
 	}
 
 
