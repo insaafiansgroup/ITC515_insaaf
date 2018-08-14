@@ -5,8 +5,8 @@ public class BorrowBookControl {
 	
 	private BorrowBookUI ui;
 	
-	private library L;
-	private member M;
+	private library l; // Changed the variable name
+	private member m; // Changed the variable name
 	private enum CONTROL_STATE { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 	private CONTROL_STATE state;
 	
@@ -16,7 +16,7 @@ public class BorrowBookControl {
 	
 	
 	public BorrowBookControl() {
-		this.L = L.INSTANCE();
+		this.l = l.INSTANCE(); // Change the variable name 
 		state = CONTROL_STATE.INITIALISED;
 	}
 	
@@ -35,12 +35,12 @@ public class BorrowBookControl {
 		if (!state.equals(CONTROL_STATE.READY)) 
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 			
-		M = L.getMember(memberId);
+		M = l.getMember(memberId); 
 		if (M == null) {
 			ui.display("Invalid memberId");
 			return;
 		}
-		if (L.memberCanBorrow(M)) {
+		if (l.memberCanBorrow(M)) {
 			PENDING = new ArrayList<>();
 			ui.setState(BorrowBookUI.UI_STATE.SCANNING);
 			state = CONTROL_STATE.SCANNING; }
@@ -55,7 +55,7 @@ public class BorrowBookControl {
 		if (!state.equals(CONTROL_STATE.SCANNING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 		}	
-		B = L.Book(bookId);
+		B = l.Book(bookId);
 		if (B == null) {
 			ui.display("Invalid bookId");
 			return;
@@ -68,7 +68,7 @@ public class BorrowBookControl {
 		for (book B : PENDING) {
 			ui.display(B.toString());
 		}
-		if (L.loansRemainingForMember(M) - PENDING.size() == 0) {
+		if (l.loansRemainingForMember(M) - PENDING.size() == 0) {
 			ui.display("Loan limit reached");
 			Complete();
 		}

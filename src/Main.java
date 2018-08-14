@@ -2,64 +2,67 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 
-public class Main {
+public class MainCode { // Class name was confusing it was not advisable to have class or method name as Main or main(changed from Main to MainCode)
+	// Made changes to only initialization section of this code
 	
-	private static Scanner IN;
-	private static library LIB;
-	private static String MENU;
-	private static Calendar CAL;
-	private static SimpleDateFormat SDF;
+	private static Scanner sc;// changed the object name from IN to sc  new
+	private static library lib;// changed the object name from Capital LIB to lib 
+	private static String menu; // changed the variable name from capital MENU to menu 
+	private static Calendar cal;// changed the object name from capital CAL to cal
+	private static SimpleDateFormat sdf;// changed the object name from SDF to sdf 
 	
 	
 	private static String Get_menu() {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("\nLibrary Main Menu\n\n")
-		  .append("  M  : add member\n")
-		  .append("  LM : list members\n")
-		  .append("\n")
-		  .append("  B  : add book\n")
-		  .append("  LB : list books\n")
-		  .append("  FB : fix books\n")
-		  .append("\n")
-		  .append("  L  : take out a loan\n")
-		  .append("  R  : return a loan\n")
-		  .append("  LL : list loans\n")
-		  .append("\n")
-		  .append("  P  : pay fine\n")
-		  .append("\n")
-		  .append("  T  : increment date\n")
-		  .append("  Q  : quit\n")
-		  .append("\n")
-		  .append("Choice : ");
+		//instance name sb was missing in below line
+		sb.append("  M  : add member\n")
+		sb.append("  LM : list members\n")
+		sb.append("\n")
+		sb.append("  B  : add book\n")
+		sb.append("  LB : list books\n")
+		sb.append("  FB : fix books\n")
+		sb.append("\n")
+		sb.append("  L  : take out a loan\n")
+		sb.append("  R  : return a loan\n")
+		sb.append("  LL : list loans\n")
+		sb.append("\n")
+		sb.append("  P  : pay fine\n")
+		sb.append("\n")
+		sb.append("  ID  : increment date\n")//The menu option was not suitable changed from T to ID
+		sb.append("  Q  : quit\n")
+		sb.append("\n")
+		sb.append("Choice : ");
 		  
 		return sb.toString();
 	}
 
 
 	public static void main(String[] args) {		
-		try {			
-			IN = new Scanner(System.in);
-			LIB = library.INSTANCE();
-			CAL = Calendar.getInstance();
-			SDF = new SimpleDateFormat("dd/MM/yyyy");
+		try {	
+			// reflect the changes made above in below section (initialization section)		
+			sc = new Scanner(System.in);
+			lib = library.INSTANCE();
+			cal = Calendar.getInstance();
+			sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
-			for (member m : LIB.Members()) {
+			for (member m : lib.Members()) {
 				output(m);
 			}
 			output(" ");
-			for (book b : LIB.Books()) {
+			for (book b : lib.Books()) {
 				output(b);
 			}
 						
-			MENU = Get_menu();
+			menu = Get_menu();
 			
 			boolean e = false;
 			
 			while (!e) {
 				
-				output("\n" + SDF.format(CAL.Date()));
-				String c = input(MENU);
+				output("\n" + sdf.format(cal.Date()));
+				String c = input(menu);
 				
 				switch (c.toUpperCase()) {
 				
@@ -98,8 +101,8 @@ public class Main {
 				case "P": 
 					payFine();
 					break;
-					
-				case "T": 
+					// chaned above T to ID
+				case "ID": 
 					incrementDate();
 					break;
 					
@@ -111,8 +114,8 @@ public class Main {
 					output("\nInvalid option\n");
 					break;
 				}
-				
-				library.SAVE();
+				// method name cannot be all caps should follow one naming convention.
+				library.save();
 			}			
 		} catch (RuntimeException e) {
 			output(e);
@@ -127,7 +130,8 @@ public class Main {
 
 	private static void listCurrentLoans() {
 		output("");
-		for (loan loan : LIB.CurrentLoans()) {
+		// changed LIB to lib
+		for (loan loan : lib.CurrentLoans()) {
 			output(loan + "\n");
 		}		
 	}
@@ -136,7 +140,8 @@ public class Main {
 
 	private static void listBooks() {
 		output("");
-		for (book book : LIB.Books()) {
+		// in for loop class name variable type changed and method name changed
+		for (Book book : lib.books()) {
 			output(book + "\n");
 		}		
 	}
@@ -145,7 +150,8 @@ public class Main {
 
 	private static void listMembers() {
 		output("");
-		for (member member : LIB.Members()) {
+		// in for loop class name variable type changed and method name changed
+		for (Member member : lib.members()) {
 			output(member + "\n");
 		}		
 	}
@@ -170,9 +176,10 @@ public class Main {
 	private static void incrementDate() {
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
-			CAL.incrementDate(days);
-			LIB.checkCurrentLoans();
-			output(SDF.format(CAL.Date()));
+			//changed object names
+			cal.incrementDate(days);
+			lib.checkCurrentLoans();
+			output(sdf.format(cal.Date()));
 			
 		} catch (NumberFormatException e) {
 			 output("\nInvalid number of days\n");
@@ -185,7 +192,8 @@ public class Main {
 		String author = input("Enter author: ");
 		String title  = input("Enter title: ");
 		String callNo = input("Enter call number: ");
-		book book = LIB.Add_book(author, title, callNo);
+		//  variable type changed and method name changed (naming convention)
+		Book book = lib.addBook(author, title, callNo);
 		output("\n" + book + "\n");
 		
 	}
@@ -197,7 +205,8 @@ public class Main {
 			String firstName  = input("Enter first name: ");
 			String email = input("Enter email: ");
 			int phoneNo = Integer.valueOf(input("Enter phone number: ")).intValue();
-			member member = LIB.Add_mem(lastName, firstName, email, phoneNo);
+			// variable type changed and method name changed (naming convention)
+			Member member = lib.addMem(lastName, firstName, email, phoneNo);
 			output("\n" + member + "\n");
 			
 		} catch (NumberFormatException e) {
