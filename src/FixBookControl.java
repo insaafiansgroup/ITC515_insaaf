@@ -41,8 +41,8 @@ public class FixBookControl {
 			return;
 		}
 		ui.display(currentBook.toString());
-		ui.setState(FixBookUI.UI_STATE.FIXING);
-		state = CONTROL_STATE.FIXING;
+		ui.setState(FixBookUI.uiState.FIXING);// class object UI_STATE changed to uiState(naming convention )
+		state = ControlState.FIXING;// class object CONTROL_STATE changed to controlState( naming convention)
 	}
 
 
