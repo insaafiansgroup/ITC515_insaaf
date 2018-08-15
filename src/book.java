@@ -32,7 +32,7 @@ public class Book implements Serializable { // Changed class name
 		return sb.toString();
 	}
 
-	public Integer ID() {
+	public Integer getId() {  // changed the function name 
 		return ID;
 	}
 
