@@ -47,12 +47,12 @@ public class Book implements Serializable { // Changed class name
 	}
 
 	
-	public boolean On_loan() {
+	public boolean onLoan() { // changed the function name
 		return state == STATE.ON_LOAN;
 	}
 
 	
-	public boolean Damaged() {
+	public boolean damaged() { // changed the function name
 		return state == STATE.DAMAGED;
 	}
 
