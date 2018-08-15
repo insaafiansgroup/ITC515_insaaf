@@ -42,7 +42,7 @@ public class Book implements Serializable { // Changed class name
 
 
 	
-	public boolean Available() {
+	public boolean available() { // changed the function name
 		return state == STATE.AVAILABLE;
 	}
 
