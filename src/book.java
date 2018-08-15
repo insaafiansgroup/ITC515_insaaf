@@ -7,7 +7,7 @@ public class Book implements Serializable { // Changed class name
 	private String bookTitle; // Changed the variable name 
 	private String bookAuthor; // Changed the variable name 
 	private String bookCall; // Changed the variable name 
-	private int booKId; // Changed the variable name 
+	private int bookId; // Changed the variable name 
 	
 	private enum STATE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
 	private STATE state;
@@ -17,17 +17,17 @@ public class Book implements Serializable { // Changed class name
 		this.bookTitle = author; // Changed the variable name 
 		this.bookAuthor = title; // Changed the variable name 
 		this.bookCall = callNo; // Changed the variable name 
-		this.booKId = id; // Changed the variable name 
+		this.bookId = id; // Changed the variable name 
 		this.state = STATE.AVAILABLE;
 	}
 	
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("Book: ").append(ID).append("\n")
-		  .append("  Title:  ").append(T).append("\n")
-		  .append("  Author: ").append(A).append("\n")
-		  .append("  CallNo: ").append(C).append("\n")
-		  .append("  State:  ").append(state);
+		StringBuilder sb = new StringBuilder();           
+		sb.append("Book: ").append(bookId).append("\n")   // Changed the variable name     
+		  .append("  Title:  ").append(bookTitle).append("\n") // Changed the variable name 
+		  .append("  Author: ").append(bookAuthor).append("\n") // Changed the variable name 
+		  .append("  CallNo: ").append(bookCall).append("\n") // Changed the variable name 
+		  .append("  State:  ").append(state); // Changed the variable name 
 		
 		return sb.toString();
 	}
