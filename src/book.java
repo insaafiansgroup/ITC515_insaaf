@@ -84,7 +84,7 @@ public class Book implements Serializable { // Changed class name
 
 	
 	public void bookRepair() { // method name is changed
-		if (state.equals(STATE.DAMAGED)) {
+		if (state.equals(STATE.isDamaged)) { // changed the method name within a method
 			state = STATE.AVAILABLE;
 		}
 		else {
