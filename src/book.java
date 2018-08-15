@@ -57,7 +57,7 @@ public class Book implements Serializable { // Changed class name
 	}
 
 	
-	public void Borrow() {
+	public void bookBorrow() { // changed the function name
 		if (state.equals(STATE.AVAILABLE)) {
 			state = STATE.ON_LOAN;
 		}
