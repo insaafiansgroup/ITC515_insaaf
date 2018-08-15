@@ -68,7 +68,7 @@ public class Book implements Serializable { // Changed class name
 	}
 
 
-	public void bookReturn(boolean isDamaged) {
+	public void bookReturn(boolean isDamaged) { // Function name is changed
 		if (state.equals(STATE.ON_LOAN)) {
 			if (isDamaged) {  // changed the method name within method
 				state = STATE.DAMAGED;
@@ -83,7 +83,7 @@ public class Book implements Serializable { // Changed class name
 	}
 
 	
-	public void Repair() {
+	public void bookRepair() { // method name is changed
 		if (state.equals(STATE.DAMAGED)) {
 			state = STATE.AVAILABLE;
 		}
