@@ -36,7 +36,7 @@ public class Book implements Serializable { // Changed class name
 		return bookId; // Changed the ID variable name
 	}
 
-	public String title() {
+	public String getTitle() { // changed the function name 
 		return T;
 	}
 
