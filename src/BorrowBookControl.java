@@ -12,18 +12,19 @@ public class BorrowBookControl {
 	
 	private List<book> pending; // naming conventions
 	private List<loan> completed; // naming conventions
-	private book B;
+	private Book b; // naming conventions
 	
 	
-	public BorrowBookControl() { // Changings in constructor
+	public BorrowBookControl() { // Changing in constructor
 		this.lib = lib.INSTANCE();
 		state = CONTROL_STATE.INITIALISED;
 	}
 	
 
 	public void setUI(BorrowBookUI ui) {
-		if (!state.equals(CONTROL_STATE.INITIALISED)) 
-			throw new RuntimeException("BorrowBookControl: cannot call setUI except in INITIALISED state");
+		if (!state.equals(CONTROL_STATE.INITIALISED)) {  // added curly brackets in if condition 
+		     throw new RuntimeException("BorrowBookControl: cannot call setUI except in INITIALISED state");
+			 }
 			
 		this.ui = ui;
 		ui.setState(BorrowBookUI.UI_STATE.READY);
