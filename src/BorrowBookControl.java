@@ -32,17 +32,18 @@ public class BorrowBookControl {
 	}
 
 		
-	public void Swiped(int memberId) {
-		if (!state.equals(CONTROL_STATE.READY)) 
+	public void swiped(int memberId) { // All changing in a method 
+		if (!state.equals(CONTROL_STATE.READY))  {
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
-			
-		M = L.getMember(memberId);
-		if (M == null) {
+		}
+		
+		m = lib.getMember(memberId);
+		if (m == null) {
 			ui.display("Invalid memberId");
 			return;
 		}
-		if (L.memberCanBorrow(M)) {
-			PENDING = new ArrayList<>();
+		if (lib.memberCanBorrow(m)) {
+			pending = new ArrayList<>();
 			ui.setState(BorrowBookUI.UI_STATE.SCANNING);
 			state = CONTROL_STATE.SCANNING; }
 		else 
