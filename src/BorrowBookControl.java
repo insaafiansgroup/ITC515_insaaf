@@ -10,8 +10,8 @@ public class BorrowBookControl {
 	private enum CONTROL_STATE { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 	private CONTROL_STATE state;
 	
-	private List<book> PENDING;
-	private List<loan> COMPLETED;
+	private List<book> pending; // naming conventions
+	private List<loan> completed; // naming conventions
 	private book B;
 	
 	
