@@ -52,25 +52,25 @@ public class BorrowBookControl {
 			ui.setState(BorrowBookUI.UI_STATE.RESTRICTED); }}
 	
 	
-	public void Scanned(int bookId) {
-		B = null;
+	public void scanned(int bookId) { // changing in method 
+		b = null;
 		if (!state.equals(CONTROL_STATE.SCANNING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 		}	
-		B = L.Book(bookId);
-		if (B == null) {
+		b = lib.Book(bookId);
+		if (b == null) {
 			ui.display("Invalid bookId");
 			return;
 		}
-		if (!B.Available()) {
+		if (!b.Available()) {
 			ui.display("Book cannot be borrowed");
 			return;
 		}
-		PENDING.add(B);
-		for (book B : PENDING) {
-			ui.display(B.toString());
+		pending.add(b);
+		for (book b : pending) {
+			ui.display(b.toString());
 		}
-		if (L.loansRemainingForMember(M) - PENDING.size() == 0) {
+		if (lib.loansRemainingForMember(memb) - pending.size() == 0) {
 			ui.display("Loan limit reached");
 			Complete();
 		}
