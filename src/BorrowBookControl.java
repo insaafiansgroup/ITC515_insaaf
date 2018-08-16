@@ -15,8 +15,8 @@ public class BorrowBookControl {
 	private book B;
 	
 	
-	public BorrowBookControl() {
-		this.L = L.INSTANCE();
+	public BorrowBookControl() { // Changings in constructor
+		this.lib = lib.INSTANCE();
 		state = CONTROL_STATE.INITIALISED;
 	}
 	
