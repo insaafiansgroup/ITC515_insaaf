@@ -72,21 +72,21 @@ public class BorrowBookControl {
 		}
 		if (lib.loansRemainingForMember(memb) - pending.size() == 0) {
 			ui.display("Loan limit reached");
-			Complete();
+			complete();
 		}
 	}
 	
 	
-	public void Complete() {
-		if (PENDING.size() == 0) {
+	public void complete() { // all changing in method
+		if (pending.size() == 0) {
 			cancel();
 		}
 		else {
 			ui.display("\nFinal Borrowing List");
-			for (book b : PENDING) {
+			for (book b : pending) {
 				ui.display(b.toString());
 			}
-			COMPLETED = new ArrayList<loan>();
+			completed = new ArrayList<loan>();
 			ui.setState(BorrowBookUI.UI_STATE.FINALISING);
 			state = CONTROL_STATE.FINALISING;
 		}
