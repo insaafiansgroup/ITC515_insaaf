@@ -5,8 +5,8 @@ public class BorrowBookControl {
 	
 	private BorrowBookUI ui;
 	
-	private library l; // Change the variable name
-	private member m; // Change the variable name
+	private library lib; // Change the variable name
+	private member memb; // Change the variable name
 	private enum CONTROL_STATE { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 	private CONTROL_STATE state;
 	
