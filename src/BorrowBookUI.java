@@ -80,8 +80,7 @@ public class BorrowBookUI {
 				} catch (NumberFormatException e) {
 					output("Invalid Book Id");
 				} 
-				break;
-					
+				break;					
 				
 			case FINALISING:
 				String ans = input("Commit loans? (Y/N): ");
@@ -93,13 +92,11 @@ public class BorrowBookUI {
 					input("Press <any key> to complete ");
 				}
 				break;
-				
-				
+								
 			case COMPLETED:
 				output("Borrowing Completed");
 				return;
-	
-				
+					
 			default:
 				output("Unhandled state");
 				throw new RuntimeException("BorrowBookUI : unhandled state :" + state);			
@@ -107,10 +104,8 @@ public class BorrowBookUI {
 		}		
 	}
 
-
 	public void display(Object object) {
 		output(object);		
 	}
-
 
 }
