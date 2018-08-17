@@ -44,7 +44,6 @@ public class BorrowBookUI {
 			case CANCELLED:
 				output("Borrowing Cancelled");
 				return;
-
 				
 			case READY:
 				String memStr = input("Swipe member card (press <enter> to cancel): ");
