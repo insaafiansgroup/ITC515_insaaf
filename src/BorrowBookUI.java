@@ -24,8 +24,8 @@ public class BorrowBookUI {
 	}	
 		
 		
-	private void output(Object object) {
-		System.out.println(object);
+	private void output(Object obj) { // changed the parameter variable to avoid the collapse
+		System.out.println(obj);
 	}
 	
 			
