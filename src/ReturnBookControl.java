@@ -28,7 +28,7 @@ public class ReturnBookControl {
 		if (!state.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
 		}	
-		book currentBook = library.Book(bookId);
+		Book currentBook = library.Book(bookId); // class name should be start with upper case letter
 		
 		if (currentBook == null) {
 			ui.display("Invalid Book Id");
