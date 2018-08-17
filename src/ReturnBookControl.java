@@ -4,7 +4,7 @@ public class ReturnBookControl {
 	private enum CONTROL_STATE { INITIALISED, READY, INSPECTING };
 	private CONTROL_STATE state;
 	
-	private library library;
+	private library lib; // changed variable name to avoid collapse
 	private loan currentLoan;
 	
 
