@@ -70,13 +70,13 @@ public class ReturnBookUI {
 	}	
 		
 		
-	private void output(Object object) {
-		System.out.println(object);
+	private void output(Object obj) { // changed the variable name to avoid collapse
+		System.out.println(obj);
 	}
 	
 			
-	public void display(Object object) {
-		output(object);
+	public void display(Object obj) { // changed the variable name to avoid collapse
+		output(obj);
 	}
 	
 	public void setState(UI_STATE state) {
