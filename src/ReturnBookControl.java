@@ -8,8 +8,8 @@ public class ReturnBookControl {
 	private loan currentLoan;
 	
 
-	public ReturnBookControl() {
-		this.library = library.INSTANCE();
+	public ReturnBookControl() { // changing in method
+		this.lib = library.INSTANCE();
 		state = CONTROL_STATE.INITIALISED;
 	}
 	
