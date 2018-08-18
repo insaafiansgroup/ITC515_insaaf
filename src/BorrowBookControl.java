@@ -98,7 +98,7 @@ public class BorrowBookControl {
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}	
 		for (book b : pending) { 
-			loan loan = lib.issueLoan(b, M);
+			loan loan = lib.issueLoan(b, memb);
 			completed.add(loan);			
 		}
 		ui.display("Completed Loan Slip");
