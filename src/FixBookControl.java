@@ -7,30 +7,30 @@ public class FixBookControl {
 
 		// library changed to lib to avoid the collapse
 	private library lib;
-	private book currentBook;
+	private Book currentBook;// class name changed from book to Book
 
 
 	public FixBookControl() {
-		this.library = library.instance(); //naming convention
+		this.lib = lib.instance(); //naming convention and other class has object name lib instead library
 		state = ControlState.INITIALISED;
 	}
 
 
 	public void setUI(FixBookUI ui) {
-		if (!state.equals(controlState.INITIALISED))//naming convention {
+		if (!state.equals(ControlState.INITIALISED))//naming convention {
 			throw new RuntimeException("FixBookControl: cannot call setUI except in INITIALISED state");
 		}
 		this.ui = ui;
-		ui.setState(FixBookUI.uiState.READY);//naming Convention
-		state = controlState.READY;		//naming convention
+		ui.setState(FixBookUI.uiState.READY)// naming convention
+		state = ControlState.READY;		
 	}
 
 
 	public void bookScanned(int bookId) {
-		if (!state.equals(controlState.READY)) {// naming convention
+		if (!state.equals(ControlState.READY)) {
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 		}
-		currentBook = library.Book(bookId);
+		currentBook = lib.book(bookId); // method name could be book not Book and library is changed to lib
 
 		if (currentBook == null) {
 			ui.display("Invalid bookId");
@@ -42,30 +42,30 @@ public class FixBookControl {
 		}
 		ui.display(currentBook.toString());
 		ui.setState(FixBookUI.uiState.FIXING);// class object UI_STATE changed to uiState(naming convention )
-		state = ControlState.FIXING;// class object CONTROL_STATE changed to controlState( naming convention)
+		state = ControlState.FIXING;// class object CONTROL_STATE changed to ControlState( naming convention)
 	}
 
 
 	public void fixBook(boolean fix) {
-		if (!state.equals(controlState.FIXING)) {// class object CONTROL_STATE changed to controlState( naming convention)
+		if (!state.equals(ControlState.FIXING)) {// class object CONTROL_STATE changed to ControlState( naming convention)
 	}
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
 		}
 		if (fix) {
-			library.repairBook(currentBook);
+			lib.repairBook(currentBook);// object name changed from library to lib
 		}
 		currentBook = null;
 		ui.setState(FixBookUI.uiState.READY);// class object UI_STATE changed to uiState(naming convention )
-		state = controlState.READY;// class object CONTROL_STATE changed to controlState( naming convention)
+		state = ControlState.READY;// enum CONTROL_STATE changed to ControlState( naming convention)
 	}
 	}
 
 
 	public void scanningComplete() {
-		if (!state.equals(controlState.READY)) {// class object CONTROL_STATE changed to controlState( naming convention)
+		if (!state.equals(ControlState.READY)) {// class object CONTROL_STATE changed to ControlState( naming convention)
 			throw new RuntimeException("FixBookControl: cannot call scanningComplete except in READY state");
 		}
-		ui.setState(FixBookUI.UI_STATE.COMPLETED);
+		ui.setState(FixBookUI.uiState.COMPLETED);
 	}
 
 
