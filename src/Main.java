@@ -6,7 +6,7 @@ public class MainCode { // Class name was confusing it was not advisable to have
 	// Made changes to only initialization section of this code
 	
 	private static Scanner sc;// changed the object name from IN to sc  new
-	private static library lib;// changed the object name from Capital LIB to lib 
+	private static Library lib;// changed the object name from Capital LIB to lib  and class name Library to Library
 	private static String menu; // changed the variable name from capital MENU to menu 
 	private static Calendar cal;// changed the object name from capital CAL to cal
 	private static SimpleDateFormat sdf;// changed the object name from SDF to sdf 
@@ -43,7 +43,7 @@ public class MainCode { // Class name was confusing it was not advisable to have
 		try {	
 			// reflect the changes made above in below section (initialization section)		
 			sc = new Scanner(System.in);
-			lib = library.INSTANCE();
+			lib = Library.INSTANCE();
 			cal = Calendar.getInstance();
 			sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
@@ -115,7 +115,7 @@ public class MainCode { // Class name was confusing it was not advisable to have
 					break;
 				}
 				// method name cannot be all caps should follow one naming convention.
-				library.save();
+				Library.save();
 			}			
 		} catch (RuntimeException e) {
 			output(e);
