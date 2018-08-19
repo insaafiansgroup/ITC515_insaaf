@@ -6,8 +6,10 @@ public class FixBookControl {
 	private ControlState state;
 
 		// library changed to lib to avoid the collapse
-	private library lib;
-	private book currentBook;
+
+	private Library lib; // class name library changed to Library
+	private Book currentBook;// Class name changed from book to Book
+
 
 
 	public FixBookControl() {
@@ -22,12 +24,12 @@ public class FixBookControl {
 		}
 		this.ui = ui;
 		ui.setState(FixBookUI.uiState.READY);//naming Convention
-		state = controlState.READY;		//naming convention
+		state = ControlState.READY;		//naming convention
 	}
 
 
 	public void bookScanned(int bookId) {
-		if (!state.equals(controlState.READY)) {// naming convention
+		if (!state.equals(ControlState.READY)) {// naming convention
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 		}
 		currentBook = library.Book(bookId);
@@ -47,7 +49,7 @@ public class FixBookControl {
 
 
 	public void fixBook(boolean fix) {
-		if (!state.equals(controlState.FIXING)) {// class object CONTROL_STATE changed to controlState( naming convention)
+		if (!state.equals(ControlState.FIXING)) {// class object CONTROL_STATE changed to ControlState( naming convention)
 	}
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
 		}
@@ -65,7 +67,7 @@ public class FixBookControl {
 		if (!state.equals(controlState.READY)) {// class object CONTROL_STATE changed to controlState( naming convention)
 			throw new RuntimeException("FixBookControl: cannot call scanningComplete except in READY state");
 		}
-		ui.setState(FixBookUI.UI_STATE.COMPLETED);
+		ui.setState(FixBookUI.uiState.COMPLETED);
 	}
 
 
