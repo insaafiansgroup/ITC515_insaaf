@@ -6,7 +6,7 @@ public class FixBookControl {
 	private ControlState state;
 
 		// library changed to lib to avoid the collapse
-	private library lib;
+	private Library lib; // class name library changed to Library
 	private Book currentBook;// Class name changed from book to Book 
 
 
