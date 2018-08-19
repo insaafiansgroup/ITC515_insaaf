@@ -75,13 +75,13 @@ public class FixBookUI {
 	}	
 		
 		
-	private void output(Object object) {
-		System.out.println(object);
+	private void output(Object obj) { // object name changed
+		System.out.println(obj); 
 	}
 	
 
-	public void display(Object object) {
-		output(object);
+	public void display(Object obj) {// object name changed
+		output(obj);
 	}
 	
 	
