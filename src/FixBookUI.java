@@ -3,22 +3,22 @@ import java.util.Scanner;
 
 public class FixBookUI {
 
-	public static enum UI_STATE { INITIALISED, READY, FIXING, COMPLETED };
+	public static enum UiState { INITIALISED, READY, FIXING, COMPLETED }; // enum name changed
 
 	private FixBookControl control;
 	private Scanner input;
-	private UI_STATE state;
+	private UiState state;
 
 	
 	public FixBookUI(FixBookControl control) {
 		this.control = control;
 		input = new Scanner(System.in);
-		state = UI_STATE.INITIALISED;
+		state = UiState.INITIALISED;
 		control.setUI(this);
 	}
 
 
-	public void setState(UI_STATE state) {
+	public void setState(UiState state) {
 		this.state = state;
 	}
 
@@ -58,11 +58,11 @@ public class FixBookUI {
 			case COMPLETED:
 				output("Fixing process complete");
 				return;
-			
+				break; //break statement was missing
 			default:
 				output("Unhandled state");
 				throw new RuntimeException("FixBookUI : unhandled state :" + state);			
-			
+				break; //break statement was missing
 			}		
 		}
 		
@@ -75,13 +75,13 @@ public class FixBookUI {
 	}	
 		
 		
-	private void output(Object object) {
-		System.out.println(object);
+	private void output(Object obj) { // object name changed
+		System.out.println(obj); 
 	}
 	
 
-	public void display(Object object) {
-		output(object);
+	public void display(Object obj) {// object name changed
+		output(obj);
 	}
 	
 	
