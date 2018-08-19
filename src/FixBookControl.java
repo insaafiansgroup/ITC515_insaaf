@@ -7,7 +7,7 @@ public class FixBookControl {
 
 		// library changed to lib to avoid the collapse
 	private library lib;
-	private Book currentBook;// class name changed from book to Book
+	private Book currentBook;// Class name changed from book to Book 
 
 
 	public FixBookControl() {
