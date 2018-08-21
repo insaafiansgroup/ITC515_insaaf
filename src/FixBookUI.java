@@ -32,15 +32,16 @@ public class FixBookUI {
 			
 			case READY:
 				String bookStr = input("Scan Book (<enter> completes): ");
-				if (bookStr.length() == 0) {
+				if (bookStr.length() == 0) 
+				{
 					control.scanningComplete();
 				}
-				else {
+				else 
+				{
 					try {
 						int bookId = Integer.valueOf(bookStr).intValue();
 						control.bookScanned(bookId);
-					}
-					catch (NumberFormatException e) {
+					}catch (NumberFormatException e) {
 						output("Invalid bookId");
 					}
 				}
