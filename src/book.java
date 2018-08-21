@@ -9,8 +9,8 @@ public class Book implements Serializable { // Changed class name
 	private String bookCall; // Changed the variable name 
 	private int bookId; // Changed the variable name 
 	
-	private enum STATE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
-	private STATE state;
+	private enum State { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
+	private State state;
 	
 	
 	public Book(String author, String title, String callNo, int id) {
@@ -18,16 +18,16 @@ public class Book implements Serializable { // Changed class name
 		this.bookAuthor = title; // Changed the variable name 
 		this.bookCall = callNo; // Changed the variable name 
 		this.bookId = id; // Changed the variable name 
-		this.state = STATE.AVAILABLE;
+		this.state = State.AVAILABLE;
 	}
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();           
 		sb.append("Book: ").append(bookId).append("\n")   // Changed the variable name     
-		  .append("  Title:  ").append(bookTitle).append("\n") // Changed the variable name 
-		  .append("  Author: ").append(bookAuthor).append("\n") // Changed the variable name 
-		  .append("  CallNo: ").append(bookCall).append("\n") // Changed the variable name 
-		  .append("  State:  ").append(state); // Changed the variable name 
+		  sb.append("  Title:  ").append(bookTitle).append("\n") // Changed the variable name 
+		  sb.append("  Author: ").append(bookAuthor).append("\n") // Changed the variable name 
+		  sb.append("  CallNo: ").append(bookCall).append("\n") // Changed the variable name 
+		  sb.append("  State:  ").append(state); // Changed the variable name 
 		
 		return sb.toString();
 	}
@@ -43,23 +43,23 @@ public class Book implements Serializable { // Changed class name
 
 	
 	public boolean isAvailable() { // changed the function name
-		return state == STATE.AVAILABLE;
+		return state == State.AVAILABLE;
 	}
 
 	
 	public boolean isOnLoan() { // changed the function name
-		return state == STATE.ON_LOAN;
+		return state == State.ON_LOAN;
 	}
 
 	
 	public boolean isDamaged() { // changed the function name
-		return state == STATE.DAMAGED;
+		return state == State.DAMAGED;
 	}
 
 	
 	public void bookBorrow() { // changed the function name
-		if (state.equals(STATE.AVAILABLE)) {
-			state = STATE.ON_LOAN;
+		if (state.equals(State.AVAILABLE)) {
+			state = State.ON_LOAN;
 		}
 		else {
 			throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", state));
@@ -69,12 +69,12 @@ public class Book implements Serializable { // Changed class name
 
 
 	public void bookReturn(boolean isDamaged) { // Function name is changed
-		if (state.equals(STATE.ON_LOAN)) {
+		if (state.equals(State.ON_LOAN)) {
 			if (isDamaged) {  // changed the method name within method
-				state = STATE.DAMAGED;
+				state =State.DAMAGED;
 			}
 			else {
-				state = STATE.AVAILABLE;
+				state = State.AVAILABLE;
 			}
 		}
 		else {
@@ -84,8 +84,8 @@ public class Book implements Serializable { // Changed class name
 
 	
 	public void bookRepair() { // method name is changed
-		if (state.equals(STATE.isDamaged)) { // changed the method name within a method
-			state = STATE.AVAILABLE;
+		if (state.equals(State.isDamaged)) { // changed the method name within a method
+			state = State.AVAILABLE;
 		}
 		else {
 			throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", state));
