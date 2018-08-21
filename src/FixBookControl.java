@@ -19,7 +19,8 @@ public class FixBookControl {
 
 
 	public void setUI(FixBookUI ui) {
-		if (!state.equals(controlState.INITIALISED))//naming convention {
+		if (!state.equals(ControlState.INITIALISED))//naming convention for enum 
+		{
 			throw new RuntimeException("FixBookControl: cannot call setUI except in INITIALISED state");
 		}
 		this.ui = ui;
