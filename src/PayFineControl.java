@@ -4,60 +4,61 @@ public class PayFineControl {
 			//change in CONTROL_STATE to ControlState
 	private enum ContralState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 	private ContralState state;
-			//changing library into lib to avoid confusion
+			//changed library into lib to avoid confusion
 	private Library lib;	//changed library to Library
-	private Member member;		//changed member to Member and double ';;' to single ';' 
+			//changed member into mem to avoid confusion
+	private Member mem;		//changed member to Member and double ';;' to single ';' 
 
 
 	public PayFineControl() {
 		this.lib = lib.INSTANCE();
-		state = CONTROL_STATE.INITIALISED;
+		state = ContralState.INITIALISED;
 	}
 	
 	
 	public void setUI(PayFineUI ui) {
-		if (!state.equals(CONTROL_STATE.INITIALISED)) {
+		if (!state.equals(ContralState.INITIALISED)) {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
 		this.ui = ui;
 		ui.setState(PayFineUI.UI_STATE.READY);
-		state = CONTROL_STATE.READY;		
+		state = ContralState.READY;		
 	}
 
 
 	public void cardSwiped(int memberId) {
-		if (!state.equals(CONTROL_STATE.READY)) {
+		if (!state.equals(ContralState.READY)) {
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 		}	
-		member = lib.getMember(memberId);
+		mem = lib.getMember(memberId);
 		
-		if (member == null) {
+		if (mem == null) {
 			ui.display("Invalid Member Id");
 			return;
 		}
-		ui.display(member.toString());
+		ui.display(mem.toString());
 		ui.setState(PayFineUI.UI_STATE.PAYING);
-		state = CONTROL_STATE.PAYING;
+		state = ContralState.PAYING;
 	}
 	
 	
 	public void cancel() {
 		ui.setState(PayFineUI.UI_STATE.CANCELLED);
-		state = CONTROL_STATE.CANCELLED;
+		state = ContralState.CANCELLED;
 	}
 
 
 	public double payFine(double amount) {
-		if (!state.equals(CONTROL_STATE.PAYING)) {
+		if (!state.equals(ContralState.PAYING)) {
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 		}	
-		double change = member.payFine(amount);
+		double change = mem.payFine(amount);
 		if (change > 0) {
 			ui.display(String.format("Change: $%.2f", change));
 		}
-		ui.display(member.toString());
+		ui.display(mem.toString());
 		ui.setState(PayFineUI.UI_STATE.COMPLETED);
-		state = CONTROL_STATE.COMPLETED;
+		state = ContralState.COMPLETED;
 		return change;
 	}
 	
