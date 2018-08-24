@@ -3,17 +3,17 @@ import java.util.Scanner;
 
 public class ReturnBookUI {
 
-	public static enum UI_STATE { INITIALISED, READY, INSPECTING, COMPLETED };
+	public static enum UiState { INITIALISED, READY, INSPECTING, COMPLETED }; 
 
 	private ReturnBookControl control;
 	private Scanner input;
-	private UI_STATE state;
+	private UiState state;
 
 	
 	public ReturnBookUI(ReturnBookControl control) {
 		this.control = control;
 		input = new Scanner(System.in);
-		state = UI_STATE.INITIALISED;
+		state = UiState.INITIALISED;
 		control.setUI(this);
 	}
 
@@ -70,16 +70,16 @@ public class ReturnBookUI {
 	}	
 		
 		
-	private void output(Object object) {
-		System.out.println(object);
+	private void output(Object obj) { // changed the variable name to avoid collapse
+		System.out.println(obj);
 	}
 	
 			
-	public void display(Object object) {
-		output(object);
+	public void display(Object obj) { // changed the variable name to avoid collapse
+		output(obj);
 	}
 	
-	public void setState(UI_STATE state) {
+	public void setState(UiState state) {
 		this.state = state;
 	}
 

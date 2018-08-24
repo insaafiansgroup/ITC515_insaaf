@@ -2,64 +2,64 @@ import java.io.Serializable;
 
 
 @SuppressWarnings("serial")
-public class book implements Serializable {
+public class Book implements Serializable { // Changed class name 
 	
-	private String T;
-	private String A;
-	private String C;
-	private int ID;
+	private String bookTitle; // Changed the variable name 
+	private String bookAuthor; // Changed the variable name 
+	private String bookCall; // Changed the variable name 
+	private int bookId; // Changed the variable name 
 	
-	private enum STATE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
-	private STATE state;
+	private enum State { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
+	private State state;
 	
 	
-	public book(String author, String title, String callNo, int id) {
-		this.A = author;
-		this.T = title;
-		this.C = callNo;
-		this.ID = id;
-		this.state = STATE.AVAILABLE;
+	public Book(String author, String title, String callNo, int id) {
+		this.bookTitle = author; // Changed the variable name 
+		this.bookAuthor = title; // Changed the variable name 
+		this.bookCall = callNo; // Changed the variable name 
+		this.bookId = id; // Changed the variable name 
+		this.state = State.AVAILABLE;
 	}
 	
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("Book: ").append(ID).append("\n")
-		  .append("  Title:  ").append(T).append("\n")
-		  .append("  Author: ").append(A).append("\n")
-		  .append("  CallNo: ").append(C).append("\n")
-		  .append("  State:  ").append(state);
+		StringBuilder sb = new StringBuilder();           
+		sb.append("Book: ").append(bookId).append("\n")   // Changed the variable name     
+		  sb.append("  Title:  ").append(bookTitle).append("\n") // Changed the variable name 
+		  sb.append("  Author: ").append(bookAuthor).append("\n") // Changed the variable name 
+		  sb.append("  CallNo: ").append(bookCall).append("\n") // Changed the variable name 
+		  sb.append("  State:  ").append(state); // Changed the variable name 
 		
 		return sb.toString();
 	}
 
-	public Integer ID() {
-		return ID;
+	public Integer getId() {  // changed the function name 
+		return bookId; // Changed the ID variable name
 	}
 
-	public String Title() {
-		return T;
+	public String getTitle() { // changed the function name 
+		return bookTitle; // changed the title variable name
 	}
 
 
 	
-	public boolean Available() {
-		return state == STATE.AVAILABLE;
+	public boolean isAvailable() { // changed the function name
+		return state == State.AVAILABLE;
 	}
 
 	
-	public boolean On_loan() {
-		return state == STATE.ON_LOAN;
+	public boolean isOnLoan() { // changed the function name
+		return state == State.ON_LOAN;
 	}
 
 	
-	public boolean Damaged() {
-		return state == STATE.DAMAGED;
+	public boolean isDamaged() { // changed the function name
+		return state == State.DAMAGED;
 	}
 
 	
-	public void Borrow() {
-		if (state.equals(STATE.AVAILABLE)) {
-			state = STATE.ON_LOAN;
+	public void bookBorrow() { // changed the function name
+		if (state.equals(State.AVAILABLE)) {
+			state = State.ON_LOAN;
 		}
 		else {
 			throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", state));
@@ -68,13 +68,13 @@ public class book implements Serializable {
 	}
 
 
-	public void Return(boolean DAMAGED) {
-		if (state.equals(STATE.ON_LOAN)) {
-			if (DAMAGED) {
-				state = STATE.DAMAGED;
+	public void bookReturn(boolean isDamaged) { // Function name is changed
+		if (state.equals(State.ON_LOAN)) {
+			if (isDamaged) {  // changed the method name within method
+				state =State.DAMAGED;
 			}
 			else {
-				state = STATE.AVAILABLE;
+				state = State.AVAILABLE;
 			}
 		}
 		else {
@@ -83,9 +83,9 @@ public class book implements Serializable {
 	}
 
 	
-	public void Repair() {
-		if (state.equals(STATE.DAMAGED)) {
-			state = STATE.AVAILABLE;
+	public void bookRepair() { // method name is changed
+		if (state.equals(State.isDamaged)) { // changed the method name within a method
+			state = State.AVAILABLE;
 		}
 		else {
 			throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", state));

@@ -3,17 +3,17 @@ import java.util.Scanner;
 
 public class BorrowBookUI {
 	
-	public static enum UI_STATE { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
+	public static enum UiState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 
 	private BorrowBookControl control;
 	private Scanner input;
-	private UI_STATE state;
+	private UiState state;
 
 	
 	public BorrowBookUI(BorrowBookControl control) {
 		this.control = control;
 		input = new Scanner(System.in);
-		state = UI_STATE.INITIALISED;
+		state = UiState.INITIALISED;
 		control.setUI(this);
 	}
 
@@ -24,12 +24,12 @@ public class BorrowBookUI {
 	}	
 		
 		
-	private void output(Object object) {
-		System.out.println(object);
+	private void output(Object obj) { // changed the parameter variable to avoid the collapse
+		System.out.println(obj);
 	}
 	
 			
-	public void setState(UI_STATE state) {
+	public void setState(UiState state) {
 		this.state = state;
 	}
 
@@ -44,7 +44,6 @@ public class BorrowBookUI {
 			case CANCELLED:
 				output("Borrowing Cancelled");
 				return;
-
 				
 			case READY:
 				String memStr = input("Swipe member card (press <enter> to cancel): ");
@@ -76,13 +75,12 @@ public class BorrowBookUI {
 				}
 				try {
 					int bookId = Integer.valueOf(bookStr).intValue();
-					control.Scanned(bookId);
+					control.scanned(bookId);
 					
 				} catch (NumberFormatException e) {
 					output("Invalid Book Id");
 				} 
-				break;
-					
+				break;					
 				
 			case FINALISING:
 				String ans = input("Commit loans? (Y/N): ");
@@ -94,13 +92,11 @@ public class BorrowBookUI {
 					input("Press <any key> to complete ");
 				}
 				break;
-				
-				
+								
 			case COMPLETED:
 				output("Borrowing Completed");
 				return;
-	
-				
+					
 			default:
 				output("Unhandled state");
 				throw new RuntimeException("BorrowBookUI : unhandled state :" + state);			
@@ -108,10 +104,8 @@ public class BorrowBookUI {
 		}		
 	}
 
-
 	public void display(Object object) {
 		output(object);		
 	}
-
 
 }
