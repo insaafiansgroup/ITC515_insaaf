@@ -17,7 +17,7 @@ public class library implements Serializable {
 	
 	private static final String libraryFile = "library.obj";	//change from LIBRARY_FILE to libraryFile
 	private static final int loanLimit = 2;	//Change from LOAN_LIMIT to loanLimit
-	private static final int LOAN_PERIOD = 2;
+	private static final int loanPeriod = 2;	//change form LOAN_PERIOD to loanPeriod
 	private static final double FINE_PER_DAY = 1.0;
 	private static final double MAX_FINES_OWED = 5.0;
 	private static final double DAMAGE_FEE = 2.0;
@@ -176,7 +176,7 @@ public class library implements Serializable {
 
 	
 	public loan issueLoan(book book, member member) {
-		Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD);
+		Date dueDate = Calendar.getInstance().getDueDate(loanPeriod);	//Change from LOAN_PERIOD to loanPeriod
 		loan loan = new loan(nextLID(), book, member, dueDate);
 		member.takeOutLoan(loan);
 		book.Borrow();
