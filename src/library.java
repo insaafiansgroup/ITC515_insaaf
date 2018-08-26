@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class library implements Serializable {
+public class Library implements Serializable { // class name should be start with upper case
 	
 	private static final String libraryFile = "library.obj";	//change from LIBRARY_FILE to libraryFile, naming convention
 	private static final int loanLimit = 2;	//Change from LOAN_LIMIT to loanLimit,int naming convention 
@@ -35,7 +35,7 @@ public class library implements Serializable {
 	private Map<Integer, book> damagedBooks;
 	
 
-	private library() {
+	private Library() { // class name should be start with upper case
 		catalog = new HashMap<>();
 		members = new HashMap<>();
 		loans = new HashMap<>();
@@ -47,13 +47,13 @@ public class library implements Serializable {
 	}
 
 	
-	public static synchronized library Instance() {		//Change form INSTANCE to Instance, class naming convention	
+	public static synchronized Library instance() {		//Change form INSTANCE to Instance, class naming convention	
 		if (self == null) {
 			Path path = Paths.get(libraryFile);	//change from LIBRARY_FILE to libraryFile, naming convention			
 			if (Files.exists(path)) {	
 				try (ObjectInputStream lof = new ObjectInputStream(new FileInputStream(libraryFile));) {  //change from LIBRARY_FILE to libraryFile, naming convention
 			    
-					self = (library) lof.readObject();
+					self = (Library) lof.readObject();
 					Calendar.getInstance().setDate(self.loadDate);
 					lof.close();
 				}
@@ -61,13 +61,13 @@ public class library implements Serializable {
 					throw new RuntimeException(e);
 				}
 			}
-			else self = new library();
+			else self = new Library();
 		}
 		return self;
 	}
 
 	
-	public static synchronized void Save() {	//Change from SAVE to Save,class naming convention
+	public static synchronized void save() {	// method name should be start with lower case letter
 		if (self != null) {
 			self.loadDate = Calendar.getInstance().Date();
 			try (ObjectOutputStream lof = new ObjectOutputStream(new FileOutputStream(libraryFile));) {	//change from LIBRARY_FILE to libraryFile, naming convention
@@ -107,55 +107,55 @@ public class library implements Serializable {
 	}
 
 	
-	public List<member> Members() {		
+	public List<member> members() {	// method name should be start with lower case letter
 		return new ArrayList<member>(members.values()); 
 	}
 
 
-	public List<book> Books() {		
+	public List<book> books() { // method name should be start with lower case letter	
 		return new ArrayList<book>(catalog.values()); 
 	}
 
 
-	public List<loan> CurrentLoans() {
+	public List<loan> currentLoans() { // method name should be start with lower case letter
 		return new ArrayList<loan>(currentLoans.values());
 	}
 
 
-	public member AddMem(String lastName, String firstName, String email, int phoneNo) {	//change from Add_mem to AddMem,class naming convention	
+	public member addMem(String lastName, String firstName, String email, int phoneNo) {	//change from Add_mem to AddMem,class naming convention	
 		member member = new member(lastName, firstName, email, phoneNo, nextMID());
 		members.put(member.getId(), member);		
 		return member;
 	}
 
 	
-	public book AddBook(String a, String t, String c) {	//Change from Add_book to AddBook,class naming convention	
+	public book addBook(String a, String t, String c) {	// method name should be start with lower case letter	
 		book b = new book(a, t, c, nextBID());
 		catalog.put(b.ID(), b);		
 		return b;
 	}
 
 	
-	public member getMember(int memberId) {
+	public Member getMember(int memberId) {
 		if (members.containsKey(memberId)) 
 			return members.get(memberId);
 		return null;
 	}
 
 	
-	public book Book(int bookId) {
+	public Book book(int bookId) {
 		if (catalog.containsKey(bookId)) 
 			return catalog.get(bookId);		
 		return null;
 	}
 
 	
-	public int LoanLimit() {	//change in class name from loanLimit to LoanLimit
+	public int loanLimit() {	// method name should be start with lower case letter
 		return loanLimit;	//Change from LOAN_LIMIT to loanLimit,naming convention
 	}
 
 	
-	public boolean memberCanBorrow(member member) {		
+	public boolean memberCanBorrow(Member member) {		
 		if (member.getNumberOfCurrentLoans() == loanLimit ) //Change from LOAN_LIMIT to loanLimit,naming convention
 			return false;
 				
@@ -170,7 +170,7 @@ public class library implements Serializable {
 	}
 
 	
-	public int loansRemainingForMember(member member) {		
+	public int LoansRemainingForMember(member member) {		
 		return loanLimit - member.getNumberOfCurrentLoans();	//Change from LOAN_LIMIT to loanLimit,naming convention
 	}
 
