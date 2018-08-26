@@ -94,6 +94,7 @@ public class PayFineUI {
 		//changed object into obj to avoid confusion
 	public void display(Object obj) {
 		output(obj);
+
 	}
 
 
