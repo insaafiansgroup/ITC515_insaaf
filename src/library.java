@@ -23,9 +23,9 @@ public class library implements Serializable {
 	private static final double damageFee = 2.0;	//Change from DAMAGE_FEE to damageFee
 	
 	private static library self;
-	private int BID;
-	private int MID;
-	private int LID;
+	private int bid;	//Change from BID to bid
+	private int mid;	//Change from MID to mid
+	private int lid;	//Change from LID to lid
 	private Date loadDate;
 	
 	private Map<Integer, book> catalog;
@@ -41,9 +41,9 @@ public class library implements Serializable {
 		loans = new HashMap<>();
 		currentLoans = new HashMap<>();
 		damagedBooks = new HashMap<>();
-		BID = 1;
-		MID = 1;		
-		LID = 1;		
+		bid = 1;	//Change from BID to bid
+		mid = 1;	//Change from MID to mid		
+		lid = 1;	//Change from LID to lid		
 	}
 
 	
@@ -83,27 +83,27 @@ public class library implements Serializable {
 
 	
 	public int BookID() {
-		return BID;
+		return bid;	//Change from BID to bid
 	}
 	
 	
 	public int MemberID() {
-		return MID;
+		return mid;	//Change from MID to mid
 	}
 	
 	
 	private int nextBID() {
-		return BID++;
+		return bid++;	//Change from BID to bid
 	}
 
 	
 	private int nextMID() {
-		return MID++;
+		return mid++;	//Change from MID to mid
 	}
 
 	
 	private int nextLID() {
-		return LID++;
+		return lid++;	//Change from LID to lid
 	}
 
 	
