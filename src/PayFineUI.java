@@ -86,14 +86,14 @@ public class PayFineUI {
 		return input.nextLine();
 	}	
 		
-		
-	private void output(Object object) {
-		System.out.println(object);
+		//changed object into obj to avoid confusion
+	private void output(Object obj) {
+		System.out.println(obj);
 	}	
 			
-
-	public void display(Object object) {
-		output(object);
+		//changed object into obj to avoid confusion
+	public void display(Object obj) {
+		output(obj);
 	}
 
 
