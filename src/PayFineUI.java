@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 
-public class PayFineUI {
+public class PayFineUI { // class name should be start with upper case letter
 			
 			//change in UI_STATE to UiState
 	public static enum UiState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED }; // change in enum naming
