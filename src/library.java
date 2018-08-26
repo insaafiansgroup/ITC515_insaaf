@@ -20,7 +20,7 @@ public class library implements Serializable {
 	private static final int loanPeriod = 2;	//change form LOAN_PERIOD to loanPeriod
 	private static final double finePerDay = 1.0;	   //Change from FINE_PER_DAY to finePerDay
 	private static final double maxFinesOwed = 5.0;   //Change from MAX_FINES_OWED to maxFinesOwed
-	private static final double DAMAGE_FEE = 2.0;
+	private static final double damageFee = 2.0;	//Change from DAMAGE_FEE to damageFee
 	
 	private static library self;
 	private int BID;
@@ -214,7 +214,7 @@ public class library implements Serializable {
 		member.dischargeLoan(currentLoan);
 		book.Return(isDamaged);
 		if (isDamaged) {
-			member.addFine(DAMAGE_FEE);
+			member.addFine(damageFee);	//Change from DAMAGE_FEE to damageFee
 			damagedBooks.put(book.ID(), book);
 		}
 		currentLoan.Loan();
