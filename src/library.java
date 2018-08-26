@@ -18,7 +18,7 @@ public class library implements Serializable {
 	private static final String libraryFile = "library.obj";	//change from LIBRARY_FILE to libraryFile
 	private static final int loanLimit = 2;	//Change from LOAN_LIMIT to loanLimit
 	private static final int loanPeriod = 2;	//change form LOAN_PERIOD to loanPeriod
-	private static final double FINE_PER_DAY = 1.0;
+	private static final double finePerDay = 1.0;	   //Change from FINE_PER_DAY to finePerDay
 	private static final double MAX_FINES_OWED = 5.0;
 	private static final double DAMAGE_FEE = 2.0;
 	
@@ -197,7 +197,7 @@ public class library implements Serializable {
 	public double calculateOverDueFine(loan loan) {
 		if (loan.isOverDue()) {
 			long daysOverDue = Calendar.getInstance().getDaysDifference(loan.getDueDate());
-			double fine = daysOverDue * FINE_PER_DAY;
+			double fine = daysOverDue * finePerDay;
 			return fine;
 		}
 		return 0.0;		
