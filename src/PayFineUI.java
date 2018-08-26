@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class PayFineUI {
 			
 			//change in UI_STATE to UiState
-	public static enum UiState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
+	public static enum UiState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED }; // change in enum naming
 
 	private PayFineControl control;
 	private Scanner input;
@@ -14,12 +14,12 @@ public class PayFineUI {
 	public PayFineUI(PayFineControl control) {
 		this.control = control;
 		input = new Scanner(System.in);
-		state = UiState.INITIALISED;	//change in UI_STATE to UiState
+		state = UiState.INITIALISED;	//change in UI_STATE to UiState, enum naming
 		control.setUI(this);
 	}
 	
 	
-	public void setState(UiState state) {	//change in UI_STATE to UiState
+	public void setState(UiState state) {	//change in UI_STATE to UiState, enum naming
 		this.state = state;
 	}
 
@@ -87,12 +87,12 @@ public class PayFineUI {
 	}	
 		
 		//changed object into obj to avoid confusion
-	private void output(Object obj) {
+	private void output(Object obj) {	//change in naming convention
 		System.out.println(obj);
 	}	
 			
 		//changed object into obj to avoid confusion
-	public void display(Object obj) {
+	public void display(Object obj) {	//change in naming convention
 		output(obj);
 
 	}
