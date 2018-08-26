@@ -5,44 +5,43 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class loan implements Serializable {
 	
-	public static enum LOAN_STATE { CURRENT, OVER_DUE, DISCHARGED };
-	
-	private int ID;
-	private book B;
-	private member M;
-	private Date D;
-	private LOAN_STATE state;
+	public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };	//Changes from LOAN_STATE to LoanState
+	private int id; //chage from ID to id
+	private book b;	//chage from B to b
+	private member m; //chage from M to m
+	private Date d;	//chage from D to d
+	private LoanState state;	//Changes from LOAN_STATE to LoanState
 
 	
 	public loan(int loanId, book book, member member, Date dueDate) {
-		this.ID = loanId;
-		this.B = book;
-		this.M = member;
-		this.D = dueDate;
-		this.state = LOAN_STATE.CURRENT;
+		this.id = loanId; //chage from ID to id
+		this.b = book;	//chage from B to b
+		this.m = member;   //chage from M to m
+		this.d = dueDate;   //chage from D to d
+		this.state = LoanState.CURRENT;	//Changes from LOAN_STATE to LoanState
 	}
 
 	
 	public void checkOverDue() {
-		if (state == LOAN_STATE.CURRENT &&
+		if (state == LoanState.CURRENT &&	//Changes from LOAN_STATE to LoanState
 			Calendar.getInstance().Date().after(D)) {
-			this.state = LOAN_STATE.OVER_DUE;			
+			this.state = LoanState.OVER_DUE;	//Changes from LOAN_STATE to LoanState			
 		}
 	}
 
 	
 	public boolean isOverDue() {
-		return state == LOAN_STATE.OVER_DUE;
+		return state == LoanState.OVER_DUE;	//Changes from LOAN_STATE to LoanState
 	}
 
 	
 	public Integer getId() {
-		return ID;
+		return id;	//chage from ID to id
 	}
 
 
 	public Date getDueDate() {
-		return D;
+		return d; //chage from D to d
 	}
 	
 	
@@ -50,29 +49,29 @@ public class loan implements Serializable {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("Loan:  ").append(ID).append("\n")
-		  .append("  Borrower ").append(M.getId()).append(" : ")
-		  .append(M.getLastName()).append(", ").append(M.getFirstName()).append("\n")
-		  .append("  Book ").append(B.ID()).append(" : " )
-		  .append(B.Title()).append("\n")
-		  .append("  DueDate: ").append(sdf.format(D)).append("\n")
+		sb.append("Loan:  ").append(id).append("\n") 	//chage from ID to id
+		  .append("  Borrower ").append(m.getId()).append(" : ")	//chage from M to m
+		  .append(m.getLastName()).append(", ").append(m.getFirstName()).append("\n")	//chage from M to m
+		  .append("  Book ").append(b.ID()).append(" : " ) //chage from B to b
+		  .append(b.Title()).append("\n")	//chage from B to b
+		  .append("  DueDate: ").append(sdf.format(d)).append("\n")	//chage from D to d
 		  .append("  State: ").append(state);		
 		return sb.toString();
 	}
 
 
 	public member Member() {
-		return M;
+		return m;  //chage from M to m
 	}
 
 
 	public book Book() {
-		return B;
+		return b;	//chage from B to b
 	}
 
 
 	public void Loan() {
-		state = LOAN_STATE.DISCHARGED;		
+		state = LoanState.DISCHARGED;	//Changes from LOAN_STATE to LoanState		
 	}
 
 }
