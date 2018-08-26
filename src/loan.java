@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @SuppressWarnings("serial")
-public class loan implements Serializable {
+public class Loan implements Serializable { // class name should be start with upper case.
 	
 	public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };	//Changes from LOAN_STATE to LoanState, enumnaming convention
 	private int id; //chage from ID to id,naming convention
@@ -12,7 +12,7 @@ public class loan implements Serializable {
 	private Date d;	//chage from D to d,naming convention
 	private LoanState state;	//Changes from LOAN_STATE to LoanState,enum naming convention
 	
-	public loan(int loanId, book book, member member, Date dueDate) {
+	public Loan(int loanId, book book, member member, Date dueDate) { // class name should be start with upper case.
 		this.id = loanId; //chage from ID to id,naming convention
 		this.b = book;	//chage from B to b,naming convention
 		this.m = member;   //chage from M to m,naming convention
