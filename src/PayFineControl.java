@@ -1,4 +1,4 @@
-public class PayFineControl {
+public class PayFineControl { // class name should be start with upper case letter
 	
 	private PayFineUI ui;
 			//change in CONTROL_STATE to ControlState
