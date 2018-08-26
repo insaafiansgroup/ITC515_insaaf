@@ -19,7 +19,7 @@ public class library implements Serializable {
 	private static final int loanLimit = 2;	//Change from LOAN_LIMIT to loanLimit
 	private static final int loanPeriod = 2;	//change form LOAN_PERIOD to loanPeriod
 	private static final double finePerDay = 1.0;	   //Change from FINE_PER_DAY to finePerDay
-	private static final double MAX_FINES_OWED = 5.0;
+	private static final double maxFinesOwed = 5.0;   //Change from MAX_FINES_OWED to maxFinesOwed
 	private static final double DAMAGE_FEE = 2.0;
 	
 	private static library self;
@@ -159,7 +159,7 @@ public class library implements Serializable {
 		if (member.getNumberOfCurrentLoans() == loanLimit ) //Change from LOAN_LIMIT to loanLimit
 			return false;
 				
-		if (member.getFinesOwed() >= MAX_FINES_OWED) 
+		if (member.getFinesOwed() >= maxFinesOwed) 
 			return false;
 				
 		for (loan loan : member.getLoans()) 
