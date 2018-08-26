@@ -15,17 +15,17 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class library implements Serializable {
 	
-	private static final String LIBRARY_FILE = "library.obj";
-	private static final int LOAN_LIMIT = 2;
-	private static final int LOAN_PERIOD = 2;
-	private static final double FINE_PER_DAY = 1.0;
-	private static final double MAX_FINES_OWED = 5.0;
-	private static final double DAMAGE_FEE = 2.0;
+	private static final String libraryFile = "library.obj";	//change from LIBRARY_FILE to libraryFile, naming convention
+	private static final int loanLimit = 2;	//Change from LOAN_LIMIT to loanLimit,int naming convention 
+	private static final int loanPeriod = 2;	//change form LOAN_PERIOD to loanPeriod,  naming convention
+	private static final double finePerDay = 1.0;	   //Change from FINE_PER_DAY to finePerDay, naming convention
+	private static final double maxFinesOwed = 5.0;   //Change from MAX_FINES_OWED to maxFinesOwed, naming convention
+	private static final double damageFee = 2.0;	//Change from DAMAGE_FEE to damageFee, naming convention
 	
 	private static library self;
-	private int BID;
-	private int MID;
-	private int LID;
+	private int bid;	//Change from BID to bid, naming convention
+	private int mid;	//Change from MID to mid, naming convention
+	private int lid;	//Change from LID to lid, naming convention
 	private Date loadDate;
 	
 	private Map<Integer, book> catalog;
@@ -41,17 +41,17 @@ public class library implements Serializable {
 		loans = new HashMap<>();
 		currentLoans = new HashMap<>();
 		damagedBooks = new HashMap<>();
-		BID = 1;
-		MID = 1;		
-		LID = 1;		
+		bid = 1;	//Change from BID to bid, naming convention
+		mid = 1;	//Change from MID to mid, naming convention		
+		lid = 1;	//Change from LID to lid, naming convention		
 	}
 
 	
-	public static synchronized library INSTANCE() {		
+	public static synchronized library Instance() {		//Change form INSTANCE to Instance, class naming convention	
 		if (self == null) {
-			Path path = Paths.get(LIBRARY_FILE);			
+			Path path = Paths.get(libraryFile);	//change from LIBRARY_FILE to libraryFile, naming convention			
 			if (Files.exists(path)) {	
-				try (ObjectInputStream lof = new ObjectInputStream(new FileInputStream(LIBRARY_FILE));) {
+				try (ObjectInputStream lof = new ObjectInputStream(new FileInputStream(libraryFile));) {  //change from LIBRARY_FILE to libraryFile, naming convention
 			    
 					self = (library) lof.readObject();
 					Calendar.getInstance().setDate(self.loadDate);
@@ -67,11 +67,11 @@ public class library implements Serializable {
 	}
 
 	
-	public static synchronized void SAVE() {
+	public static synchronized void Save() {	//Change from SAVE to Save,class naming convention
 		if (self != null) {
 			self.loadDate = Calendar.getInstance().Date();
-			try (ObjectOutputStream lof = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
-				lof.writeObject(self);
+			try (ObjectOutputStream lof = new ObjectOutputStream(new FileOutputStream(libraryFile));) {	//change from LIBRARY_FILE to libraryFile, naming convention
+				lof.writeObject(self);	
 				lof.flush();
 				lof.close();	
 			}
@@ -83,27 +83,27 @@ public class library implements Serializable {
 
 	
 	public int BookID() {
-		return BID;
+		return bid;	//Change from BID to bid, naming convention
 	}
 	
 	
 	public int MemberID() {
-		return MID;
+		return mid;	//Change from MID to mid, naming convention
 	}
 	
 	
 	private int nextBID() {
-		return BID++;
+		return bid++;	//Change from BID to bid,naming convention
 	}
 
 	
 	private int nextMID() {
-		return MID++;
+		return mid++;	//Change from MID to mid,naming convention
 	}
 
 	
 	private int nextLID() {
-		return LID++;
+		return lid++;	//Change from LID to lid,naming convention
 	}
 
 	
@@ -122,14 +122,14 @@ public class library implements Serializable {
 	}
 
 
-	public member Add_mem(String lastName, String firstName, String email, int phoneNo) {		
+	public member AddMem(String lastName, String firstName, String email, int phoneNo) {	//change from Add_mem to AddMem,class naming convention	
 		member member = new member(lastName, firstName, email, phoneNo, nextMID());
 		members.put(member.getId(), member);		
 		return member;
 	}
 
 	
-	public book Add_book(String a, String t, String c) {		
+	public book AddBook(String a, String t, String c) {	//Change from Add_book to AddBook,class naming convention	
 		book b = new book(a, t, c, nextBID());
 		catalog.put(b.ID(), b);		
 		return b;
@@ -150,16 +150,16 @@ public class library implements Serializable {
 	}
 
 	
-	public int loanLimit() {
-		return LOAN_LIMIT;
+	public int LoanLimit() {	//change in class name from loanLimit to LoanLimit
+		return loanLimit;	//Change from LOAN_LIMIT to loanLimit,naming convention
 	}
 
 	
 	public boolean memberCanBorrow(member member) {		
-		if (member.getNumberOfCurrentLoans() == LOAN_LIMIT ) 
+		if (member.getNumberOfCurrentLoans() == loanLimit ) //Change from LOAN_LIMIT to loanLimit,naming convention
 			return false;
 				
-		if (member.getFinesOwed() >= MAX_FINES_OWED) 
+		if (member.getFinesOwed() >= maxFinesOwed) 
 			return false;
 				
 		for (loan loan : member.getLoans()) 
@@ -171,12 +171,12 @@ public class library implements Serializable {
 
 	
 	public int loansRemainingForMember(member member) {		
-		return LOAN_LIMIT - member.getNumberOfCurrentLoans();
+		return loanLimit - member.getNumberOfCurrentLoans();	//Change from LOAN_LIMIT to loanLimit,naming convention
 	}
 
 	
 	public loan issueLoan(book book, member member) {
-		Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD);
+		Date dueDate = Calendar.getInstance().getDueDate(loanPeriod);	//Change from LOAN_PERIOD to loanPeriod,naming convention
 		loan loan = new loan(nextLID(), book, member, dueDate);
 		member.takeOutLoan(loan);
 		book.Borrow();
@@ -197,7 +197,7 @@ public class library implements Serializable {
 	public double calculateOverDueFine(loan loan) {
 		if (loan.isOverDue()) {
 			long daysOverDue = Calendar.getInstance().getDaysDifference(loan.getDueDate());
-			double fine = daysOverDue * FINE_PER_DAY;
+			double fine = daysOverDue * finePerDay;
 			return fine;
 		}
 		return 0.0;		
@@ -214,7 +214,7 @@ public class library implements Serializable {
 		member.dischargeLoan(currentLoan);
 		book.Return(isDamaged);
 		if (isDamaged) {
-			member.addFine(DAMAGE_FEE);
+			member.addFine(damageFee);	//Change from DAMAGE_FEE to damageFee,naming convention
 			damagedBooks.put(book.ID(), book);
 		}
 		currentLoan.Loan();

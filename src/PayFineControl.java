@@ -1,65 +1,66 @@
 public class PayFineControl {
 	
 	private PayFineUI ui;
-	private enum CONTROL_STATE { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
-	private CONTROL_STATE state;
-	
-	private library library;
-	private member member;;
+			//change in CONTROL_STATE to ControlState
+	private enum ContralState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
+	private ContralState state;	//change in CONTROL_STATE to ControlState
+			//changed library into lib to avoid confusion
+	private Library lib;	//changed library to Library
+			//changed member into mem to avoid confusion
+	private Member mem;	//changed member to Member and double ';;' to single ';' 
 
 
 	public PayFineControl() {
-		this.library = library.INSTANCE();
-		state = CONTROL_STATE.INITIALISED;
+		this.lib = lib.INSTANCE();
+		state = ContralState.INITIALISED;	//change in CONTROL_STATE to ControlState
 	}
 	
 	
 	public void setUI(PayFineUI ui) {
-		if (!state.equals(CONTROL_STATE.INITIALISED)) {
+		if (!state.equals(ContralState.INITIALISED)) {	//change in CONTROL_STATE to ControlState
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
 		this.ui = ui;
-		ui.setState(PayFineUI.UI_STATE.READY);
-		state = CONTROL_STATE.READY;		
+		ui.setState(PayFineUI.Ui.State.READY);	//naming Convention from UI_STATE to Ui.State
+		state = ContralState.READY;	//change in CONTROL_STATE to ControlState		
 	}
 
 
 	public void cardSwiped(int memberId) {
-		if (!state.equals(CONTROL_STATE.READY)) {
+		if (!state.equals(ContralState.READY)) {	//change in CONTROL_STATE to ControlState
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 		}	
-		member = library.getMember(memberId);
+		mem = lib.getMember(memberId);
 		
-		if (member == null) {
+		if (mem == null) {
 			ui.display("Invalid Member Id");
 			return;
 		}
-		ui.display(member.toString());
-		ui.setState(PayFineUI.UI_STATE.PAYING);
-		state = CONTROL_STATE.PAYING;
+		ui.display(mem.toString());
+		ui.setState(PayFineUI.Ui.State.PAYING);	//naming Convention from UI_STATE to Ui.State
+		state = ContralState.PAYING;	//change in CONTROL_STATE to ControlState
 	}
 	
 	
 	public void cancel() {
-		ui.setState(PayFineUI.UI_STATE.CANCELLED);
-		state = CONTROL_STATE.CANCELLED;
+		ui.setState(PayFineUI.Ui.State.CANCELLED);	//naming Convention from UI_STATE to Ui.State
+		state = ContralState.CANCELLED;	//change in CONTROL_STATE to ControlState
 	}
 
 
 	public double payFine(double amount) {
-		if (!state.equals(CONTROL_STATE.PAYING)) {
+		if (!state.equals(ContralState.PAYING)) {	//change in CONTROL_STATE to ControlState
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 		}	
-		double change = member.payFine(amount);
+		double change = mem.payFine(amount);
 		if (change > 0) {
 			ui.display(String.format("Change: $%.2f", change));
 		}
-		ui.display(member.toString());
-		ui.setState(PayFineUI.UI_STATE.COMPLETED);
-		state = CONTROL_STATE.COMPLETED;
+		ui.display(mem.toString());
+		ui.setState(PayFineUI.UI_STATE.COMPLETED);	//naming Convention from UI_STATE to Ui.State
+		state = ContralState.COMPLETED;	//change in CONTROL_STATE to ControlState
 		return change;
 	}
 	
-
 
 }
