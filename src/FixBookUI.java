@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class FixBookUI {
 
-	public static enum UiState { INITIALISED, READY, FIXING, COMPLETED }; // enum name changed
+	public static enum UiState { INITIALISED, READY, FIXING, COMPLETED }; // enum name changed // naming convention
 
 	private FixBookControl control;
 	private Scanner input;
@@ -19,7 +19,7 @@ public class FixBookUI {
 
 
 	public void setState(UiState state) {
-		this.state = state;
+		this.state = state; 
 	}
 
 	
@@ -32,15 +32,16 @@ public class FixBookUI {
 			
 			case READY:
 				String bookStr = input("Scan Book (<enter> completes): ");
-				if (bookStr.length() == 0) {
+				if (bookStr.length() == 0) 
+				{
 					control.scanningComplete();
 				}
-				else {
+				else 
+				{
 					try {
 						int bookId = Integer.valueOf(bookStr).intValue();
 						control.bookScanned(bookId);
-					}
-					catch (NumberFormatException e) {
+					}catch (NumberFormatException e) {
 						output("Invalid bookId");
 					}
 				}

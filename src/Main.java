@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class MainCode { // Class name was confusing it was not advisable to have class or method name as Main or main(changed from Main to MainCode)
 	// Made changes to only initialization section of this code
 	
-	private static Scanner sc;// changed the object name from IN to sc  new
-	private static library lib;// changed the object name from Capital LIB to lib 
+	private static Scanner sc;// changed the object name from IN to sc  new // naming convention
+	private static Library lib;// changed the object name from Capital LIB to lib  an class name
 	private static String menu; // changed the variable name from capital MENU to menu 
 	private static Calendar cal;// changed the object name from capital CAL to cal
 	private static SimpleDateFormat sdf;// changed the object name from SDF to sdf 
@@ -115,7 +115,7 @@ public class MainCode { // Class name was confusing it was not advisable to have
 					break;
 				}
 				// method name cannot be all caps should follow one naming convention.
-				library.save();
+				lib.save();
 			}			
 		} catch (RuntimeException e) {
 			output(e);
@@ -123,7 +123,8 @@ public class MainCode { // Class name was confusing it was not advisable to have
 		output("\nEnded\n");
 	}	
 
-		private static void payFine() {
+	
+	private static void payFine() {
 		new PayFineUI(new PayFineControl()).run();		
 	}
 
@@ -131,7 +132,7 @@ public class MainCode { // Class name was confusing it was not advisable to have
 	private static void listCurrentLoans() {
 		output("");
 		// changed LIB to lib
-		for (loan loan : lib.CurrentLoans()) {
+		for (Loan l : lib.CurrentLoans()) {
 			output(loan + "\n");
 		}		
 	}
@@ -221,8 +222,7 @@ public class MainCode { // Class name was confusing it was not advisable to have
 		return IN.nextLine();
 	}
 	
-	
-	
+
 	private static void output(Object object) {
 		System.out.println(object);
 	}

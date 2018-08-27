@@ -59,7 +59,7 @@ public class FixBookControl {
 		}
 		currentBook = null;
 		ui.setState(FixBookUI.uiState.READY);// class object UI_STATE changed to uiState(naming convention )
-		state = ControlState.READY;// class object CONTROL_STATE changed to controlState( naming convention)
+		state = ControlState.READY;// class object CONTROL_STATE changed to ControlState( naming convention)
 	}
 	}
 
