@@ -3,16 +3,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @SuppressWarnings("serial")
-public class loan implements Serializable {
+public class Loan implements Serializable { // class name should be start with upper case.
 	
 	public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };	//Changes from LOAN_STATE to LoanState, enumnaming convention
 	private int id; //chage from ID to id,naming convention
-	private book b;	//chage from B to b,naming convention
-	private member m; //chage from M to m,naming convention
+	private Book b;	//chage from B to b,naming convention
+	private Member m; //chage from M to m,naming convention
 	private Date d;	//chage from D to d,naming convention
 	private LoanState state;	//Changes from LOAN_STATE to LoanState,enum naming convention
 	
-	public loan(int loanId, book book, member member, Date dueDate) {
+	public Loan(int loanId, book book, member member, Date dueDate) { // class name should be start with upper case.
 		this.id = loanId; //chage from ID to id,naming convention
 		this.b = book;	//chage from B to b,naming convention
 		this.m = member;   //chage from M to m,naming convention
@@ -49,17 +49,17 @@ public class loan implements Serializable {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Loan:  ").append(id).append("\n") 	//chage from ID to id naming,naming convention
-		  .append("  Borrower ").append(m.getId()).append(" : ")	//chage from M to m,naming convention
+		  .append("Borrower ").append(m.getId()).append(" : ")	//chage from M to m,naming convention
 		  .append(m.getLastName()).append(", ").append(m.getFirstName()).append("\n")	//chage from M to m,naming convention
-		  .append("  Book ").append(b.ID()).append(" : " ) //chage from B to b,naming convention
+		  .append("Book ").append(b.ID()).append(" : " ) //chage from B to b,naming convention
 		  .append(b.Title()).append("\n")	//chage from B to b,naming convention
-		  .append("  DueDate: ").append(sdf.format(d)).append("\n")	//chage from D to d,naming convention
-		  .append("  State: ").append(state);		
+		  .append("DueDate: ").append(sdf.format(d)).append("\n")	//chage from D to d,naming convention
+		  .append("State: ").append(state);		
 		return sb.toString();
 	}
 
 
-	public member Member() {
+	public m  ember Member() {
 		return m;  //chage from M to m,naming convention
 	}
 
