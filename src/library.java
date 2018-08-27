@@ -15,12 +15,12 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class Library implements Serializable { // class name should be start with upper case
 	
-	private static final String libraryFile = "library.obj";	//change from LIBRARY_FILE to libraryFile, naming convention
-	private static final int loanLimit = 2;	//Change from LOAN_LIMIT to loanLimit,int naming convention 
-	private static final int loanPeriod = 2;	//change form LOAN_PERIOD to loanPeriod,  naming convention
-	private static final double finePerDay = 1.0;	   //Change from FINE_PER_DAY to finePerDay, naming convention
-	private static final double maxFinesOwed = 5.0;   //Change from MAX_FINES_OWED to maxFinesOwed, naming convention
-	private static final double damageFee = 2.0;	//Change from DAMAGE_FEE to damageFee, naming convention
+	private static final String LIBRARY_FILE = "library.obj";	//change from LIBRARY_FILE to libraryFile, naming convention
+	private static final int LOAN_LIMIT= 2;	//Change from LOAN_LIMIT to loanLimit,int naming convention 
+	private static final int LOAN_PERIOD = 2;	//change form LOAN_PERIOD to loanPeriod,  naming convention
+	private static final double FINE_PER_DAY= 1.0;	   //Change from FINE_PER_DAY to finePerDay, naming convention
+	private static final double MAX_FINES_OWED = 5.0;   //Change from MAX_FINES_OWED to maxFinesOwed, naming convention
+	private static final double DAMAGEFEE = 2.0;	//Change from DAMAGE_FEE to damageFee, naming convention
 	
 	private static library self;
 	private int bid;	//Change from BID to bid, naming convention
@@ -117,20 +117,20 @@ public class Library implements Serializable { // class name should be start wit
 	}
 
 
-	public List<loan> currentLoans() { // method name should be start with lower case letter
-		return new ArrayList<loan>(currentLoans.values());
+	public List<Loan> currentLoans() { // method name should be start with lower case letter
+		return new ArrayList<Loan>(currentLoans.values());
 	}
 
 
-	public member addMem(String lastName, String firstName, String email, int phoneNo) {	//change from Add_mem to AddMem,class naming convention	
-		member member = new member(lastName, firstName, email, phoneNo, nextMID());
+	public Member addMem(String lastName, String firstName, String email, int phoneNo) {	//change from Add_mem to AddMem,class naming convention	
+		Member member = new Member(lastName, firstName, email, phoneNo, nextMID());
 		members.put(member.getId(), member);		
 		return member;
 	}
 
 	
-	public book addBook(String a, String t, String c) {	// method name should be start with lower case letter	
-		book b = new book(a, t, c, nextBID());
+	public Book addBook(String a, String t, String c) {	// method name should be start with lower case letter	
+		Book b = new Book(a, t, c, nextBID());
 		catalog.put(b.ID(), b);		
 		return b;
 	}
@@ -151,18 +151,18 @@ public class Library implements Serializable { // class name should be start wit
 
 	
 	public int loanLimit() {	// method name should be start with lower case letter
-		return loanLimit;	//Change from LOAN_LIMIT to loanLimit,naming convention
+		return LOAN_LIMIT;	//Change from LOAN_LIMIT to loanLimit,naming convention
 	}
 
 	
 	public boolean memberCanBorrow(Member member) {		
-		if (member.getNumberOfCurrentLoans() == loanLimit ) //Change from LOAN_LIMIT to loanLimit,naming convention
+		if (member.getNumberOfCurrentLoans() == LOAN_LIMIT ) //Change from LOAN_LIMIT to loanLimit,naming convention
 			return false;
 				
 		if (member.getFinesOwed() >= maxFinesOwed) 
 			return false;
 				
-		for (loan loan : member.getLoans()) 
+		for (Loan loan : member.getLoans()) 
 			if (loan.isOverDue()) 
 				return false;
 			
@@ -170,14 +170,14 @@ public class Library implements Serializable { // class name should be start wit
 	}
 
 	
-	public int LoansRemainingForMember(member member) {		
+	public int loansRemainingForMember(Member member) {		
 		return loanLimit - member.getNumberOfCurrentLoans();	//Change from LOAN_LIMIT to loanLimit,naming convention
 	}
 
 	
 	public loan issueLoan(book book, member member) {
 		Date dueDate = Calendar.getInstance().getDueDate(loanPeriod);	//Change from LOAN_PERIOD to loanPeriod,naming convention
-		loan loan = new loan(nextLID(), book, member, dueDate);
+		Loan loan = new Loan(nextLID(), book, member, dueDate);
 		member.takeOutLoan(loan);
 		book.Borrow();
 		loans.put(loan.getId(), loan);
@@ -204,9 +204,9 @@ public class Library implements Serializable { // class name should be start wit
 	}
 
 
-	public void dischargeLoan(loan currentLoan, boolean isDamaged) {
-		member member = currentLoan.Member();
-		book book  = currentLoan.Book();
+	public void dischargeLoan(Loan currentLoan, boolean isDamaged) {
+		Member member = currentLoan.Member();
+		Book book  = currentLoan.Book();
 		
 		double overDueFine = calculateOverDueFine(currentLoan);
 		member.addFine(overDueFine);	
@@ -214,7 +214,7 @@ public class Library implements Serializable { // class name should be start wit
 		member.dischargeLoan(currentLoan);
 		book.Return(isDamaged);
 		if (isDamaged) {
-			member.addFine(damageFee);	//Change from DAMAGE_FEE to damageFee,naming convention
+			member.addFine(DAMAGE_FEE);	//Change from DAMAGE_FEE to damageFee,naming convention
 			damagedBooks.put(book.ID(), book);
 		}
 		currentLoan.Loan();
